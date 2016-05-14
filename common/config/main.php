@@ -1,4 +1,5 @@
 <?php
+// @TODO test smpt
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
@@ -19,5 +20,6 @@ return [
                 'password'   => 'mYsmTpPassword',
             ],
         ],
+        'sendMail' => 'common\components\SendMail'
     ],
 ];

@@ -51,7 +51,12 @@ class SignupForm extends Model
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
-        
-        return $user->save() ? $user : null;
+        if($user->save()){
+            $message = 'You have new user';
+            \Yii::$app->sendMail->sendMail(\Yii::$app->params['adminEmail'], 'admin', 'new user', $message);
+            return $user;
+        }
+
+        return null;
     }
 }
