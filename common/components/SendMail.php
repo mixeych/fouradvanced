@@ -8,6 +8,7 @@ class SendMail extends Component
     
     public function sendMail($to , $name='', $subject, $body)
     {
+        \Yii::trace('sendMail');
         \Yii::$app->mail->compose()
         ->setFrom([\Yii::$app->params['supportEmail'] => \Yii::$app->params['siteName']])
         ->setTo([$to => $name])

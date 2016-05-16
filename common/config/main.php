@@ -1,5 +1,5 @@
 <?php
-// @TODO test smpt
+
 return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
@@ -16,8 +16,8 @@ return [
                 'port'       => '465',
                 'smtpsecure' => 'ssl',
                 'smtpauth'   => true,
-                'username'   => 'mysmtplogin@example.ru',
-                'password'   => 'mYsmTpPassword',
+                'username'   => 'bogatyrkayakobasa@yandex.ru',
+                'password'   => 'olenka26092014',
             ],
         ],
         'sendMail' => 'common\components\SendMail'
