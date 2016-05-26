@@ -8,6 +8,7 @@ class m160429_101420_article extends Migration
     {
         $this->createTable('article', [
             'id' => $this->primaryKey(),
+            'link' => $this->text()->notNull(),
             'title' => $this->text()->notNull(),
             'content' => $this->text()->notNull(),
             'author' => $this->integer()->notNull(),

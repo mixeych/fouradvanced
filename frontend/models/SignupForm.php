@@ -12,6 +12,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $repassword;
 
     /**
      * @inheritdoc
@@ -30,8 +31,10 @@ class SignupForm extends Model
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            [['password', 'repassword'], 'required'],
+            [['password', 'repassword'], 'string', 'min' => 6],
+            
+            ['repassword', 'compare', 'compareAttribute' => 'password'],
         ];
     }
 
@@ -42,7 +45,9 @@ class SignupForm extends Model
      */
     public function signup()
     {
+        
         if (!$this->validate()) {
+            \Yii::trace('not validate');
             return null;
         }
         

@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'email') ?>
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
-
+                <?= $form->field($model, 'repassword')->passwordInput()->label('Repeat Password') ?>
                 <div class="form-group">
                     <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                 </div>

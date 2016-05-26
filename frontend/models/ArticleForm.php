@@ -44,7 +44,6 @@ class ArticleForm extends Model
                 return false;
             }
             $article->save();
-            Yii::trace($article->getErrors());
             return true;
         }
         return false;

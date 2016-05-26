@@ -1,10 +1,9 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 $this->title = 'Blog';
-$this->params['breadcrumbs'][] = $this->title;
-var_dump($articles);
 foreach($articles as $article){?>
-    <h3><?=$article->title ?></h3>
+    <a href="<?=Url::to(['blog/article', 'id' => $article->id]) ?>"><h3><?=$article->title ?></h3></a>
     <p><?=$article->content ?></p>
 <?php
 }
@@ -12,6 +11,5 @@ foreach($articles as $article){?>
 
 
 <p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
+    
 </p>
