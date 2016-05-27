@@ -13,15 +13,13 @@ use yii\helpers\Html;
 <?= $form->field($model, 'firstName'); ?>
 <?= $form->field($model, 'secondName'); ?>
 <label for="myaccountform-birthday">Birthday</label>
-<?=DatePicker::widget([
-    'model' => $model,
-    'attribute' => 'birthday',
-    'language' => 'ru',
-    'dateFormat' => 'dd-MM-YYYY',
-    //'id' => 'birthday'
-]); ?>
+<?=$form->field($model, 'day')->dropDownList($model->getDaysArray()) ?>
+<?=$form->field($model, 'mounth')->dropDownList($model->getMonthsArray()) ?>
+<?=$form->field($model, 'year')->dropDownList($model->getYearsArray()) ?>
 <?=$form->field($model, 'username'); ?>
-
+<div class="form-group">
+    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+</div>
 
 <?php ActiveForm::end(); ?>
 

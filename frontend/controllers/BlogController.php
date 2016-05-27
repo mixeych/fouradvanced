@@ -4,9 +4,25 @@ namespace frontend\controllers;
 use frontend\models\ArticleForm;
 use Yii;
 use common\models\Article;
+use yii\filters\AccessControl;
 
 class BlogController extends \yii\web\Controller
 {
+    public function behaviors() {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create-post'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+    
     public function actionIndex()
     {
         $articles = Article::getActiveArticles();

@@ -14,6 +14,7 @@ class ArticleForm extends Model
 {
     public $title;
     public $content;
+    public $captcha;
 
     /**
      * @inheritdoc
@@ -23,6 +24,7 @@ class ArticleForm extends Model
         return [
             // name, email, subject and body are required
             [['title', 'content'], 'required'],
+            ['captcha', 'captcha'],
             // email has to be a valid email address
         ];
     }

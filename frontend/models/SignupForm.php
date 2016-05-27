@@ -13,6 +13,7 @@ class SignupForm extends Model
     public $email;
     public $password;
     public $repassword;
+    public $captcha;
 
     /**
      * @inheritdoc
@@ -35,6 +36,7 @@ class SignupForm extends Model
             [['password', 'repassword'], 'string', 'min' => 6],
             
             ['repassword', 'compare', 'compareAttribute' => 'password'],
+            ['captcha', 'captcha']
         ];
     }
 
@@ -59,6 +61,7 @@ class SignupForm extends Model
         if($user->save()){
             $message = "You have new user: $this->username \r\n email: $this->email";
             \Yii::$app->sendMail->sendMail(\Yii::$app->params['adminEmail'], 'admin', 'new user', $message);
+           \Yii::$app->session->setFlash('successRegister', 'Регистрация прошла успешно');
             return $user;
         }
 

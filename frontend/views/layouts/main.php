@@ -8,7 +8,8 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
-use common\widgets\Alert;
+use yii\bootstrap\Alert ;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -27,7 +28,6 @@ AppAsset::register($this);
 
 <div class="wrap">
     <?php
-    var_dump(Yii::$app->name);
     NavBar::begin([
         'brandLabel' => Html::img('@web/images/weed-button.png', ['alt' => Yii::$app->params['siteName']]),
         'brandUrl' => Yii::$app->homeUrl,
@@ -43,7 +43,11 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = '<li>'
+        $menuItems[] = '
+               <li><a href="'.Url::to(['/blog/create-post']).'">Создать пост</a>
+               </li>
+               <li><a href="'.Url::to(['/my-account/']).'">Мой Аккаунт</a></li>
+               <li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
                 'Logout (' . Yii::$app->user->identity->username . ')',
@@ -60,7 +64,14 @@ AppAsset::register($this);
     ?>
     <div class="container main">
         <div class="page">
-        <?= Alert::widget() ?>
+            
+        <?php if(\Yii::$app->session->hasFlash('successRegister')): ?>
+        <?= Alert::widget([
+                'options' => [
+                    'class' => 'alert-info',
+                ],
+                'body' => \Yii::$app->session->getFlash('successRegister'),]) ?>
+        <?php endif; ?>
         <?= $content ?>
         </div>
     </div>
