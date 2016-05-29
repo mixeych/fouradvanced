@@ -32,9 +32,9 @@ class MyAccountForm extends Model
     
     public function changeAccountInfo()
     {
-//        if($this->validate()){
-//            
-//        }
+        if($this->validate()){
+
+        }
     }
     
     public function getMonthsArray()

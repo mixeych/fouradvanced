@@ -6,6 +6,7 @@ use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use common\models\Usermeta;
 
 /**
  * User model
@@ -190,5 +191,25 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function getUsermeta()
+    {
+        return $this->hasMany(Usermeta::className(), ['user_id' => 'id']);
+    }
+
+    public function updateUserMeta($metaKey, $userMeta)
+    {
+        $meta = $this->findOne(['user_id' => $this->id, 'meta_key' => $metaKey]);
+        if(!$meta){
+            return false;
+        }
+        $meta->meta_value = $userMeta;
+        $meta->save();
+    }
+
+    public function getUserMetaByKey($key)
+    {
+        return Usermeta::findOne(['user_id' => $this->id, 'meta_key' => $key]);
     }
 }

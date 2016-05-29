@@ -8,6 +8,7 @@ class m160429_101755_usermeta extends Migration
     {
         $this->createTable('usermeta', [
             'id' => $this->primaryKey(),
+            'user_id' => $this->integer()->notNull(),
             'meta_key' => $this->text(),
             'meta_value' => $this->text(),
         ]);
