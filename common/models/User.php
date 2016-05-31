@@ -200,16 +200,25 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function updateUserMeta($metaKey, $userMeta)
     {
-        $meta = $this->findOne(['user_id' => $this->id, 'meta_key' => $metaKey]);
+        $meta = Usermeta::findOne(['user_id' => $this->id, 'meta_key' => $metaKey]);
         if(!$meta){
-            return false;
+            \Yii::trace('!meta');
+            $meta = new Usermeta();
+            $meta->user_id = $this->id;
+            $meta->meta_key = $metaKey;
+            $meta->meta_value = $userMeta;
+            $meta->save();
+            return true;
         }
+        \Yii::trace('meta');
         $meta->meta_value = $userMeta;
         $meta->save();
+        return true;
     }
 
     public function getUserMetaByKey($key)
     {
-        return Usermeta::findOne(['user_id' => $this->id, 'meta_key' => $key]);
+        $userMeta = Usermeta::findOne(['user_id' => $this->id, 'meta_key' => $key]);
+        return $userMeta->meta_value;
     }
 }

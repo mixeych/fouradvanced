@@ -6,6 +6,11 @@ class m160429_101420_article extends Migration
 {
     public function up()
     {
+        $tableOptions = null;
+        if ($this->db->driverName === 'mysql') {
+            $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
+        }
+        
         $this->createTable('article', [
             'id' => $this->primaryKey(),
             'link' => $this->text()->notNull(),
@@ -17,7 +22,7 @@ class m160429_101420_article extends Migration
             'dislikes' => $this->integer(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
-        ]);
+        ], $tableOptions);
     }
 
     public function down()

@@ -47,9 +47,7 @@ class BlogController extends \yii\web\Controller
     public function actionArticle($id)
     {
         $article = Article::findOne($id);
-        Yii::trace('article controller');
         if(!$article){
-            Yii::trace('article controller exception');
             throw new NotFoundHttpException;
         }
         Yii::trace('article controller return');
