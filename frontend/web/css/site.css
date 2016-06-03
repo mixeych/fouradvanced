@@ -94,7 +94,9 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
-
+.avatar-widget .congirm{
+    height:50px;
+}
 /* align the logout "link" (button in form) of the navbar */
 .nav > li > form {
     padding: 8px;

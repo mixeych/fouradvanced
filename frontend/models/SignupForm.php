@@ -3,7 +3,7 @@ namespace frontend\models;
 
 use yii\base\Model;
 use common\models\User;
-
+use yii\helpers\Url;
 /**
  * Signup form
  */
@@ -59,6 +59,8 @@ class SignupForm extends Model
         $user->setPassword($this->password);
         $user->generateAuthKey();
         if($user->save()){
+            $userAvarar = Url::to('@web/images/non-avatar.png');
+            $user->updateUserMeta('avatar', $userAvarar);
             $message = "You have new user: $this->username \r\n email: $this->email";
             \Yii::$app->sendMail->sendMail(\Yii::$app->params['adminEmail'], 'admin', 'new user', $message);
            \Yii::$app->session->setFlash('successRegister', 'Регистрация прошла успешно');

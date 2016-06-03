@@ -22,4 +22,5 @@ return [
         ],
         'sendMail' => 'common\components\SendMail'
     ],
+//    'defaultRoute' => 'blog/index',
 ];

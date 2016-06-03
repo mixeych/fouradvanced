@@ -4,10 +4,13 @@ use \yii\bootstrap\ActiveForm;
 $this->title = 'My Info';
 use yii\jui\DatePicker;
 use yii\helpers\Html;
+use common\widgets\AvatarWidget;
+use yii\bootstrap\Modal;
+
 ?> 
 <h1><?= Html::encode($this->title)?></h1>
-
 <p>Информация пользователя</p>
+<?=  AvatarWidget::widget() ?>
 <?php $form = ActiveForm::begin(['id' => 'account-form']); ?>
 <?= $form->field($model, 'firstName')->textInput(['value' => $user['firstName']]); ?>
 <?= $form->field($model, 'secondName')->textInput(['value' => $user['secondName']]); ?>
@@ -19,7 +22,16 @@ use yii\helpers\Html;
 <div class="form-group">
     <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
 </div>
+<?php
+Modal::begin([
+    'toggleButton' => ['label' => 'click me'],
+    'closeButton' => false,
+]);
 
+echo 'Say hello...';
+
+Modal::end();
+?>
 <?php ActiveForm::end(); ?>
 
 
